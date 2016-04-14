@@ -12,6 +12,10 @@
     <img src="{{ instance.image.url }}" class="img-responsive">
 {% endif %}
 <h1>{{ instance.title }} <small>{% if instance.draft %}<span style='color:red;'>Draft </span>{% endif %}{{ instance.publish }}</small></h1>
+{#<p>Read time: {% if instance.read_time|time:"i" <= "01" %} < 1 minute#}
+{#              {% elif instance.read_time|time:"i" < "10" %} < 10 minutes#}
+{#              {% else %}{{ instance.read_time|time:"i" }} minutes{% endif %}</p>#}
+<p>Read time: {% if instance.read_time <= 1 %} < 1 minute {% else %}{{ instance.read_time }} minutes{% endif %}</p>
 {% if instance.user.get_full_name %}
 <p>Author: {{ instance.user.get_full_name }}</p>
 {% endif %}
@@ -60,7 +64,8 @@
             <footer>via {{ comment.user }} on {{ comment.timestamp|timesince }} ago |
                     {% if comment.children.count > 0 %}
                     {{ comment.children.count }} Comment{% if comment.children.count > 1 %}s{% endif %} |{% endif %}
-                    <a class="comment-reply-btn" href="#">Reply</a>
+                    <a class="comment-reply-btn" href="#">Reply</a> |
+                    <a class="" href="{{ comment.get_absolute_url }}">Thread</a>
             </footer>
             <div class="comment-reply">
                 {% for child_comment in comment.children %}
