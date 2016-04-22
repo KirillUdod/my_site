@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     # apps
     'comments',
     'posts',
+    'accounts',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
@@ -60,6 +61,7 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+LOGIN_URL = '/login/'
 ROOT_URLCONF = 'my_site.urls'
 
 TEMPLATES = [
